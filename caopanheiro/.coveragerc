@@ -1,0 +1,15 @@
+[run]
+branch = True
+omit =
+    *__init__*
+    */.venv/*
+    */manage.py
+
+[html]
+directory = htmlcov
+
+
+[report]
+fail_under = 98
+show_missing = True
+skip_covered = False
