@@ -1,4 +1,11 @@
-from core.models import Animal, AnimalGrupoIdade, AnimalPorte, AnimalSexo
+from core.models import (
+    Animal,
+    AnimalGrupoIdade,
+    AnimalPorte,
+    AnimalSexo,
+    Post,
+    PostStatus,
+)
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from parameterized import parameterized
@@ -16,14 +23,14 @@ class TestAnimalModel(TestCase):
             raca="Yorkshire",
         )
 
-    def test_model_str(self):
+    def test_animal_str(self):
         animal = Animal.objects.get(
             nome="Flufy", idade=8, sexo=AnimalSexo.MACHO
         )
         animal_str = f"{animal.pk}-{animal.nome}-{animal.sexo}-{animal.porte}"
         self.assertEqual(str(animal), animal_str)
 
-    def test_model_repr(self):
+    def test_animal_repr(self):
         animal = Animal.objects.get(
             nome="Flufy", idade=8, sexo=AnimalSexo.MACHO
         )
@@ -39,14 +46,14 @@ class TestAnimalModel(TestCase):
                 AnimalPorte.PEQUENO,
             ),
             (
-                "Macho",
+                "MA",
                 AnimalGrupoIdade.ADULTO,
                 8,
                 AnimalPorte.PEQUENO,
             ),
             (
                 AnimalSexo.MACHO,
-                "Adulto",
+                "C",
                 8,
                 AnimalPorte.PEQUENO,
             ),
@@ -54,7 +61,7 @@ class TestAnimalModel(TestCase):
                 AnimalSexo.MACHO,
                 AnimalGrupoIdade.ADULTO,
                 9,
-                "Pequeno",
+                "S",
             ),
         ]
     )
@@ -67,4 +74,40 @@ class TestAnimalModel(TestCase):
                 idade=idade,
                 porte=porte,
                 raca="Não definido",
+            )
+
+
+class TestPostModel(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.animal = Animal.objects.create(
+            nome="Flufy",
+            sexo=AnimalSexo.MACHO,
+            grupo_idade=AnimalGrupoIdade.ADULTO,
+            idade=8,
+            porte=AnimalPorte.PEQUENO,
+            raca="Yorkshire",
+        )
+        cls.post = Post.objects.create(
+            titulo="Titulo do Post",
+            animal=cls.animal,
+            status=PostStatus.ATIVO,
+            descricao="Descrição do Post Longa" * 10,
+        )
+
+    def test_post_str(self):
+        post_str = f"{self.post.pk}-{self.post.titulo}-{self.post.status}"
+        self.assertEqual(str(self.post), post_str)
+
+    def test_post_repr(self):
+        post_repr = f"{self.post.pk}-{self.post.titulo}-{self.post.status}"
+        self.assertEqual(repr(self.post), post_repr)
+
+    def test_create_validation_error(self):
+        with self.assertRaises(ValidationError):
+            Post.objects.create(
+                titulo="Titulo do Post",
+                animal=self.animal,
+                status="X",
+                descricao="Descrição do Post Longa" * 10,
             )

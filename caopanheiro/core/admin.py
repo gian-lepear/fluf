@@ -1,9 +1,5 @@
-from core.models import Animal
+from core.models import Animal, Post
 from django.contrib import admin
 
-
-class AnimalAdmin(admin.ModelAdmin):
-    pass
-
-
 admin.site.register(Animal)
+admin.site.register(Post)
