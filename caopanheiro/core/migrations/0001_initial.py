@@ -7,22 +7,62 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Animal',
+            name="Animal",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=30)),
-                ('sexo', models.CharField(choices=[('M', 'Macho'), ('F', 'Fêmea'), ('I', 'Indefinido')], default='I', max_length=1)),
-                ('grupo_idade', models.CharField(choices=[('F', 'Filhote'), ('A', 'Adulto'), ('I', 'Indefinido')], default='I', max_length=1)),
-                ('idade', models.PositiveSmallIntegerField(null=True)),
-                ('porte', models.CharField(choices=[('G', 'Grande'), ('M', 'Médio'), ('P', 'Pequeno')], default='P', max_length=1)),
-                ('raca', models.CharField(max_length=30)),
-                ('criado_em', models.DateTimeField(auto_now_add=True)),
-                ('atualizado_em', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=30)),
+                (
+                    "sexo",
+                    models.CharField(
+                        choices=[
+                            ("M", "Macho"),
+                            ("F", "Fêmea"),
+                            ("I", "Indefinido"),
+                        ],
+                        default="I",
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "grupo_idade",
+                    models.CharField(
+                        choices=[
+                            ("F", "Filhote"),
+                            ("A", "Adulto"),
+                            ("I", "Indefinido"),
+                        ],
+                        default="I",
+                        max_length=1,
+                    ),
+                ),
+                ("idade", models.PositiveSmallIntegerField(null=True)),
+                (
+                    "porte",
+                    models.CharField(
+                        choices=[
+                            ("G", "Grande"),
+                            ("M", "Médio"),
+                            ("P", "Pequeno"),
+                        ],
+                        default="P",
+                        max_length=1,
+                    ),
+                ),
+                ("raca", models.CharField(max_length=30)),
+                ("criado_em", models.DateTimeField(auto_now_add=True)),
+                ("atualizado_em", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]

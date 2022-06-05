@@ -17,13 +17,15 @@ isort = {version = "^5.10.1", allow-prereleases = true}
 flake8 = {version = "^4.0.1", allow-prereleases = true}
 coverage = "^6.4.1"
 parameterized = "^0.8.1"
+pre-commit = "^2.19.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 80
+line-length = 79
+include = '\.pyi?$'
 exclude = '''
 /(
     \.git
@@ -37,7 +39,7 @@ exclude = '''
   | dist
   | database
   | \.vscode
-  | migrations
+  | migrations/
 )/
 '''
 
