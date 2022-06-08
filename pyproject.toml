@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "caopanheiro"
+name = "fluf"
 version = "0.1.0"
 description = ""
 authors = ["Giancarlo Lester <gian.lepear@gmail.com>"]

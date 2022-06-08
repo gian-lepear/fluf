@@ -1,4 +1,4 @@
-PROJECT_DIR = caopanheiro
+PROJECT_DIR = fluf
 django_run:
 	cd $(PROJECT_DIR) && poetry run python manage.py runserver
 
