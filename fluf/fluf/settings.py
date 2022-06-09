@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+import django_heroku
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+django_heroku.settings(locals())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -33,7 +35,6 @@ ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=str).split(" ")  # type: ign
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.extend(
         [
+            "django.contrib.admin",
             "drf_yasg",
         ]
     )
