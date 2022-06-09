@@ -43,6 +43,13 @@ INSTALLED_APPS = [
     "core",
 ]
 
+if DEBUG:
+    INSTALLED_APPS.extend(
+        [
+            "drf_yasg",
+        ]
+    )
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

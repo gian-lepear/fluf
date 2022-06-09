@@ -142,3 +142,4 @@ cython_debug/
 files/
 *.db
 postgres-data/
+.env.prod
