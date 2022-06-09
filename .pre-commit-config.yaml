@@ -12,3 +12,9 @@ repos:
     rev: 4.0.1
     hooks:
       - id: flake8
+  - repo: local
+    hooks:
+      - id: pre-commit-shell
+        name: Pre commit script
+        entry: pre-commit.sh
+        language: script
